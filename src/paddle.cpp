@@ -37,7 +37,9 @@ void Paddle::checkBoundaries(int screenX) {
 
 void Paddle::checkCollision(int ballX, int ballY, int ballRadius, int ballYVelocity, Ball *ball) {
     if (ballX + ballRadius >= x && ballX - ballRadius <= x + width && ballY + ballRadius >= y && ballY - ballRadius <= y + height) {
-        ball->setYVelocity(-ballYVelocity);
+        if (ballYVelocity > 0) {
+            ball->setYVelocity(-ballYVelocity);
+        }
     }
 }
 
