@@ -26,6 +26,15 @@ void BrickGrid::draw() {
     }
 }
 
+void BrickGrid::resetGrid() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            bricks[i][j] = true;
+        }
+    }
+    score = 0;
+}
+
 void BrickGrid::checkCollision(int ballX, int ballY, int ballRadius, int ballXVelocity, int ballYVelocity, Ball *ball) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
@@ -33,10 +42,15 @@ void BrickGrid::checkCollision(int ballX, int ballY, int ballRadius, int ballXVe
                 if (ballX + ballRadius >= j * (brickWidth + padding) && ballX - ballRadius <= j * (brickWidth + padding) + brickWidth && ballY + ballRadius >= i * (brickHeight + padding) && ballY - ballRadius <= i * (brickHeight + padding) + brickHeight) {
                     ball->deflect(0, j * (brickWidth + padding) + brickWidth, i * (brickHeight + padding) + brickHeight);
                     bricks[i][j] = false;
+                    score += 1;
                 }
             }
         }
     }
+}
+
+void BrickGrid::setScore(int score) {
+    this->score = score;
 }
 
 void BrickGrid::setBrick(int row, int column, bool value) {
@@ -69,4 +83,8 @@ int BrickGrid::getPadding() {
 
 Color BrickGrid::getColor() {
     return color;
+}
+
+int BrickGrid::getScore() {
+    return score;
 }

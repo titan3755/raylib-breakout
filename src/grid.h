@@ -15,6 +15,9 @@ public:
     int getBrickHeight();
     int getPadding();
     Color getColor();
+    int getScore();
+    void setScore(int score);
+    void resetGrid();
 private:
     int rows;
     int columns;
@@ -23,4 +26,5 @@ private:
     int padding;
     Color color;
     bool **bricks;
+    int score = 0;
 };

@@ -39,10 +39,6 @@ void Ball::deflect(int deflectionSide, int screenX, int screenY) {
         xVelocity = -xVelocity;
     else if (deflectionSide == 1)
         yVelocity = -yVelocity;
-    else if (deflectionSide == 2) {
-        this->x = screenX / 2;
-        this->y = screenY / 2;
-    }
 }
 
 void Ball::checkBoundaries(int screenX, int screenY) {
@@ -53,7 +49,8 @@ void Ball::checkBoundaries(int screenX, int screenY) {
         deflect(1, 0, 0);
     }
     if (y >= screenY) {
-        deflect(2, screenX, screenY);
+        lives--;
+        gpause = 1;
     }
 }
 
@@ -81,5 +78,18 @@ Color Ball::getColor() {
     return color;
 }
 
+int Ball::getLives() {
+    return lives;
+}
 
+void Ball::setLives(int lives) {
+    this->lives = lives;
+}
 
+void Ball::setGpause(int gpause) {
+    this->gpause = gpause;
+}   
+
+int Ball::getGpause() {
+    return gpause;
+}
