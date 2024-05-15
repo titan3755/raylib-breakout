@@ -41,14 +41,14 @@ void gameActions(Ball &ball, Paddle &paddle, BrickGrid &bgrid, bool &gameOn, boo
         ball.setYVelocity(0);
         ball.setX(SCREEN_WIDTH / 2);
         ball.setY(SCREEN_HEIGHT / 2);
-        gamePauseText.setText(std::to_string(ball.getLives()) + " Lives Remaining! Press space to continue");
+        gamePauseText.setText(std::to_string(ball.getLives()) + " Lives Remaining! Press enter to continue");
         gamePauseText.draw();
         EndDrawing();
         if (ball.getLives() == 0) {
             gameOn = false;
             gameEnd = true;
         }
-        if (IsKeyPressed(KEY_SPACE)) {
+        if (IsKeyPressed(KEY_ENTER)) {
             ball.setGpause(0);
             ball.setX(SCREEN_WIDTH / 2);
             ball.setY(SCREEN_HEIGHT / 2);
